@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>random</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Generate a<br><span> Random Password</span></h1>
+    <div class="display">
+      <input type="text" id="password" placeholder="password">
+      <img src="copy.png" alt="">
+    </div>
+    <div><button onclick='createPassword()'>
+        <img src="generate.png">Generate Password
+      </button></div>
+  </div>
+  <script>
+
+    const passwordBox = document.getElementById("password");
+    const length = 12;
+    const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    const lowercase = "abcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789";
+    const symbols = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+
+    const AlllChars = uppercase + lowercase + numbers + symbols;
+
+    function createPassword() {
+      let password = "";
+      password += uppercase[Math.floor(Math.random() * uppercase.length)];
+      password += lowercase[Math.floor(Math.random() * lowercase.length)];
+      password += numbers[Math.floor(Math.random() * numbers.length)];
+      password += symbols[Math.floor(Math.random() * symbols.length)];
+
+      while (length > password.length) {
+        password += AlllChars[Math.floor(Math.random() * AlllChars.length)];
+      }
+      passwordBox.value = password;
+    }
+
+
+  </script>
+</body>
+
+</html>
