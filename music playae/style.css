@@ -29,3 +29,36 @@ nav {
   justify-content: space-between;
   margin-bottom: 30px;
 }
+
+nav .circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+
+  background: #fff;
+  color: #f53192;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 10px rgba(255, 26, 26, 0.22);
+}
+
+.song-img {
+  width: 220px;
+  border-radius: 50%;
+  border: 8px solid #fff;
+  box-shadow: 0 10px 60px rgba(255, 26, 26, 0.22);
+}
+
+.music-player {
+  font-size: 20px;
+  font-weight: 400;
+  color: #333;
+  margin-top: 20px;
+
+}
+
+.music-player p {
+  font-size: 14px;
+  color: #333;
+}
