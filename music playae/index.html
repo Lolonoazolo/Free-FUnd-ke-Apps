@@ -1,33 +1,113 @@
-<! doctype html>
-  <html>
+<!DOCTYPE html>
 
-  <head>
-    <title>music player</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/56c05a69f3.js" crossorigin="anonymous"></script>
-  </head>
+<html>
 
-  <body>
-    <div class="container">
-      <div class="music-player">
-        <nav>
-          <div class="circle">
-            <i class="fa-solid fa-angle-left"></i>
-          </div>
-          <div class="circle">
-            <i class="fa-solid fa-bars"></i>
-          </div>
-        </nav>
-        <img src="media/468-thumbnail.png" class="song-img" alt="">
-        <h1>Descpacito</h1>
-        <p>Luis. fonsi Ft. Puerto Rican</p>
+<head>
+  <title>Music Player</title>
 
-        <audio controls>
-          <source src="media/le monde.mp3" type="audio/mpeg">
-        </audio>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://kit.fontawesome.com/56c05a69f3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="music-player">
+
+      <nav>
+        <div class="circle">
+          <i class="fa-solid fa-angle-left"></i>
+        </div>
+
+        <div class="circle">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </nav>
+
+      <img src="media/468-thumbnail.png" class="song-img" alt="Song Image">
+
+      <h1>Despacito</h1>
+      <p>Luis Fonsi Ft. Puerto Rican</p>
+
+      <audio controls id="song">
+        <source src="media/le monde.mp3" type="audio/mpeg">
+      </audio>
+
+      <input type="range" value="0" id="progress">
+
+      <div class="controls">
+
+        <div>
+          <i class="fa-solid fa-backward" style="color: rgb(84, 9, 71);" id="backward"></i>
+        </div>
+
+        <div onclick="playPause()">
+          <i class="fa-solid fa-play" style="color: rgb(84, 9, 71);" id="ctrlIcon"></i>
+        </div>
+
+        <div>
+          <i class="fa-solid fa-forward" style="color: rgb(84, 9, 71);" id="forward"></i>
+        </div>
 
       </div>
-    </div>
-  </body>
 
-  </html>
+    </div>
+
+  </div>
+
+  <script>
+
+    let progress = document.getElementById("progress");
+    let song = document.getElementById("song");
+    let ctrlIcon = document.getElementById("ctrlIcon");
+
+    // Set progress bar after audio metadata loads
+    song.onloadedmetadata = function () {
+      progress.max = song.duration;
+      progress.value = song.currentTime;
+    };
+
+    // Play / Pause
+    function playPause() {
+
+      if (ctrlIcon.classList.contains("fa-pause")) {
+
+        song.pause();
+
+        ctrlIcon.classList.remove("fa-pause");
+        ctrlIcon.classList.add("fa-play");
+
+      } else {
+
+        song.play();
+
+        ctrlIcon.classList.remove("fa-play");
+        ctrlIcon.classList.add("fa-pause");
+
+      }
+    }
+
+    // Update progress bar while song is playing
+    song.addEventListener("timeupdate", function () {
+      progress.value = song.currentTime;
+    });
+
+    // Change song position when progress bar is moved
+    progress.oninput = function () {
+      song.currentTime = progress.value;
+    };
+
+    progress.onchange = function () {
+      song.play();
+      song.currentTime = progress.value;
+      ctrlIcon.classList.remove("fa-play");
+      ctrlIcon.classList.add("fa-pause");
+    }
+
+  </script>
+
+</body>
+
+</html>
