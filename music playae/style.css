@@ -109,3 +109,7 @@ nav .circle {
   color: #fff;
 
 }
+
+audio {
+  display: none;
+}
